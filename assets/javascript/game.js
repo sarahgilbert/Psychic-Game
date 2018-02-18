@@ -17,15 +17,15 @@ guessesSoFar.push(userGuess);
 console.log(computerGuess);
 
 
-// here are the main problems: I'm pretty sure that the computer thinks it's a new game each time a letter is pressed. The guesses left never change from 9. If you pick the right letter, the list of letters guessed goes away, and it registers a win, but the guesses remaining never change, and you can never lose...
+// here are the main problems: I'm pretty sure the computer makes a new game each time a letter is pressed. The guesses remaining stay at 9 until you guess right, then it registers a win,and the number of guesses remaining goes down by one. When you win 9 times, it registers a loss. 
 
 // connect to HTML
 var winsDisplay = document.getElementById("wins")
 
 if (userGuess === computerGuess) {
     wins++;
-    guessesLeft =9; //the guesses aren't changing -I think it's a new "game" with each letter press?
-    guessesSoFar.length = 0;
+    guessesLeft --; //the guesses go down by one when you win...
+    guessesSoFar.length =9;
     
     winsDisplay.innerHTML = "You have won " + wins + " times!";
     console.log("wins =" + wins);
@@ -35,9 +35,8 @@ var lossesDisplay = document.getElementById("losses")
 
 if (guessesLeft == 0) {
      losses++;
-     guessesLeft = 9; //guesses aren't changing
-     guessesSoFar.length =0;
-     //same problem as above
+     guessesSoFar.length =9;
+     
      // display to html
      lossesDisplay.innerHTML = "You have lost " + losses + "times!";
      console.log("losses =" +losses); //display isn't working
